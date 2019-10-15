@@ -1,0 +1,104 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+
+@mixin button-outlined($bg) {
+  border: 1px solid getButtonColor($bg);
+}
+
+@mixin button-bg($bg) {
+  background: getButtonColor($bg);
+  transition: background-color 0.1s ease;
+
+  &:hover {
+    background: lighten(getButtonColor($bg), 5%);
+    transition: all 0.3s ease;
+    text-decoration: none;
+  }
+  &:active {
+    background: darken(getButtonColor($bg), 50%);
+    text-decoration: none;
+  }
+  &:after {
+    transition: background-color 0.2s ease;
+    position: absolute;
+    content: "";
+    height: 4px;
+    bottom: 0;
+    width: 100%;
+    background-color: getButtonColor($bg);
+    opacity: 0.18;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    left: 0;
+  }
+}
+
+button {
+  display: inline-block;
+  border: none;
+  color: rgba(0, 0, 0, 0.87);
+  text-decoration: none;
+  padding: 15px 45px;
+  font-size: 13px;
+  font-family: $text-font-stack;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 3px;
+  border-radius: 2px;
+  text-align: center;
+  position: relative;
+  outline: none;
+  cursor: pointer;
+}
+
+
+.btn-contained {
+  color: #fff;
+  @include button-bg(default);
+}
+
+.btn-outlined {
+  color: getButtonColor(default);
+  @include button-outlined(default);
+  @include button-bg(white);
+}
+
+.btn-contained-primary {
+  color: #fff;
+  @include button-bg(primary);
+}
+
+.btn-outlined-primary {
+  color: getButtonColor(primary);
+  @include button-outlined(primary);
+  @include button-bg(white);
+}
+
+.btn-outlined-secondary {
+  color: getButtonColor(accent);
+  @include button-outlined(accent);
+  @include button-bg(white);
+}
+
+
+
+.btn-contained-secondary {
+  color: #fff;
+  @include button-bg(accent);
+}
+
+
+
+.button-ripple {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  z-index: 0;
+  overflow: hidden;
+  position: absolute;
+  border-radius: inherit;
+  pointer-events: none;
+}
